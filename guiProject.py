@@ -62,15 +62,15 @@ class GUI:
         This function is called when the 'Get quote' button is clicked. It is meant to get the user input and check if the data is not valid with showing error message.
         If data is valid, the function determines the price of insurance based on user's data and display it to them as quote in a new window.
         '''
-        #List of car makes eligible to choose from.
+        # List of car makes eligible to choose from.
         car_makes=['kia', 'toyota', 'chevrolet', 'nissan','ford', 'honda', 'hyundai']
         
-        #List of car models eligible to choose from.
+        # List of car models eligible to choose from.
         car_models=['carnival', 'rio', 'soul', 'camry', 'corolla','avalon', 'malibu',
                     'corvette', 'sillverado', 'altima', 'maxima',
                     'sentra', 'focus', 'edge', 'mustang', 'accord', 'odyssey', 'civic',
                     'Sonata', 'accent', 'elantra']
-        #List of cars whose insurance is more expensive.
+        # List of cars whose insurance is more expensive.
         exp_cars=['mustang', 'accord', 'odyssey', 'camry', 'corvette', 'sillverado']
         
         #Getting the user inputs
@@ -91,7 +91,7 @@ class GUI:
             # Default insurance price
             price=50.00
             
-            #Comparing user data with factors that affect the price.
+            # Comparing user data with factors that affect the price.
             if age <25:
                 price=price+20
             if age>50:
@@ -107,13 +107,13 @@ class GUI:
             if car_model.lower() in exp_cars:
                 price=price+random.uniform(10.0, 15.5)
         
-            #Checking if types of data entered are correct, whether car make and model are vaild, age(18-100), and car_year(1995-2022).
+            # Checking if types of data entered are correct, whether car make and model are vaild, age(18-100), and car_year(1995-2022).
             if name.isalpha()==True and car_make.isalpha()==True and car_model.isalpha()==True and str(age).isdigit()==True and str(car_year).isdigit()==True and (str(car_make)).lower() in car_makes and (str(car_model)).lower() in car_models and int(car_year)>1995 and int(car_year)<=2022 and age<100 and age>=18:
                 quoteMsg=f"Hello {name}! You can get your {car_make.title()} {car_model.title()} {car_year} insurance for {price:.2f}$/monthly or {price*6-50:.2f}$ for 6 months if you pay today! To get this done call us on 1-800-XAL-XAL or visit our website https://xal.com"
                 messagebox.showinfo('Message', quoteMsg)
             else:
                 raise(ValueError, TypeError)
-        #Catching the errors expected with showing an error message.
+        # Catching the errors expected with showing an error message.
         except(ValueError, TypeError):
             print('Oops there is something wrong!')
             errorMsg=f"Something went wrong!\nAge: 18-100\nCar year:1995-2022\nDo not leave any entries empty!\nCar makes eligible:Kia, Toyota, Chevrolet, Nissan, Ford, Honda, Hyundai\nCar models eligible: Carnival, Rio, Soul, Camry, Corolla, Avalon, Malibu,Corvette, Sillverado, Altima, Maxima, Sentra, Focus, Edge, Mustang, Accord, odyssey, Civic Sonata, Accent, Elantra"
@@ -121,7 +121,7 @@ class GUI:
             messagebox.showerror('Error', errorMsg)
            
            
-        #Resetting the entries after user presses the 'Get quote' button and get their quote.       
+        # Resetting the entries after user presses the 'Get quote' button and get their quote.       
         self.entry_name.delete(0, END)
         self.entry_age.delete(0,END)
         self.entry_car_make.delete(0, END)
